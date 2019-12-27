@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/kimsible/simple-array/issues"
   },
-  "homepage": "https://github.com/kimsible/simple-array#readme"
+  "homepage": "https://github.com/kimsible/simple-array#readme",
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "git-hooks": "^1.1.10",
+    "standard": "^14.3.1"
+  }
 }
