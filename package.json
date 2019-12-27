@@ -1,0 +1,26 @@
+{
+  "name": "simple-array",
+  "version": "1.0.0",
+  "description": "library making javascript array manipulation easy",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava -v test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kimsible/simple-array.git"
+  },
+  "keywords": [
+    "array",
+    "Array",
+    "library",
+    "easy",
+    "simple"
+  ],
+  "author": "kimsible",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/kimsible/simple-array/issues"
+  },
+  "homepage": "https://github.com/kimsible/simple-array#readme"
+}
