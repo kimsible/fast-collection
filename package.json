@@ -1,31 +1,38 @@
 {
-  "name": "simple-array",
+  "name": "db-collection",
   "version": "1.0.0",
-  "description": "library making javascript array manipulation easy",
+  "description": "library making javascript object array manipulation easy",
   "main": "index.js",
   "scripts": {
     "test": "ava -v test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kimsible/simple-array.git"
+    "url": "git+ssh://git@github.com/kimsible/db-collection.git"
   },
   "keywords": [
     "array",
     "Array",
-    "library",
-    "easy",
-    "simple"
+    "object",
+    "db",
+    "collection",
+    "database",
+    "map",
+    "retrieve",
+    "update",
+    "delete",
+    "select"
   ],
   "author": "kimsible",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/kimsible/simple-array/issues"
+    "url": "https://github.com/kimsible/db-collection/issues"
   },
-  "homepage": "https://github.com/kimsible/simple-array#readme",
+  "homepage": "https://github.com/kimsible/db-collection#readme",
   "devDependencies": {
     "ava": "^2.4.0",
     "git-hooks": "^1.1.10",
+    "lodash.ismatchwith": "^4.4.0",
     "standard": "^14.3.1"
   }
 }
