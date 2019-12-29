@@ -17,6 +17,8 @@ test('select', select, ['date', 'body'], DbCollection.from([{ body: 'lorem ipsum
 test('update', update, { body: 'lorem ipsum' }, { name: 'toto' })
 test('remove', remove, [{ name: 'toto' }])
 test('values', values, 'name', ['marvin', 'toto'])
+test('findIndex-found', findIndex, { name: 'toto' }, 1)
+test('findIndex-notfound', findIndex, { name: 'titi' }, -1)
 
 function retrieve (t, input, expected) {
   t.deepEqual(DbCollection.from(data).retrieve(...input), expected)
@@ -43,4 +45,9 @@ function remove (t, where) {
 function values (t, input, expected) {
   const ref = new DbCollection(...data)
   t.deepEqual(ref.values(input), expected)
+}
+
+function findIndex (t, input, expected) {
+  const ref = new DbCollection(...data)
+  t.deepEqual(ref.findIndex(item => item.name === input.name), expected)
 }

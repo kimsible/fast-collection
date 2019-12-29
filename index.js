@@ -1,40 +1,55 @@
 'use strict'
 
-const isMatchWith = require('lodash.ismatchwith')
-
-const compare = (source, filter) => {
+const compare = (value, filter) => {
   if (typeof filter === 'function') {
-    return filter(source)
+    return filter(value)
   }
   if (['boolean', 'number', 'string'].includes(typeof filter)) {
-    return filter === source
+    return filter === value
   }
   if (filter instanceof RegExp) {
-    return filter.test(source)
+    return filter.test(value)
   }
 }
 
-const isMatchMultiple = (source, filters) => filters.find(filter => isMatchWith(source, filter, compare))
+const isDeepMatch = (item, filters) => {
+  for (const key in filters) {
+    if (!compare(item[key], filters[key])) {
+      return false
+    }
+  }
+  return true
+}
+
+const hasOneMatch = (item, where) => {
+  for (const filters of where) {
+    if (isDeepMatch(item, filters)) {
+      return true
+    }
+  }
+  return false
+}
 
 class DbCollection extends Array {
   retrieve (...where) {
-    return DbCollection.from(this.reduce((acc, item) => {
-      const matched = isMatchMultiple(item, where)
-      if (matched) {
-        return [...acc, item]
-      } else {
-        return acc
+    return this.reduce((acc, item) => {
+      if (hasOneMatch(item, where)) {
+        acc.push(item)
       }
-    }, []))
+      return acc
+    }, DbCollection.from([]))
   }
 
   select (...keys) {
-    return this.map(item => keys.reduce((acc, key) => ({ ...acc, [key]: item[key] }), {}))
+    return this.map(item => keys.reduce((acc, key) => {
+      acc[key] = item[key]
+      return acc
+    }, {}))
   }
 
   update (item) {
     return (...where) => {
-      const index = this.findIndex(item => isMatchMultiple(item, where))
+      const index = this.findIndex(item => hasOneMatch(item, where))
       if (index > -1) {
         const updated = { ...this[index], ...item }
         this.splice(index, 0, updated)
@@ -44,11 +59,9 @@ class DbCollection extends Array {
   }
 
   delete (...where) {
-    const index = this.findIndex(item => isMatchMultiple(item, where))
+    const index = this.findIndex(item => hasOneMatch(item, where))
     if (index > -1) {
-      const deleted = this[index]
-      this.splice(index, 1)
-      return deleted
+      return this.splice(index, 1)[0]
     }
   }
 
@@ -59,6 +72,17 @@ class DbCollection extends Array {
       }
       return acc
     }, [])
+  }
+
+  findIndex (callback) {
+    let index = 0
+    while (index < this.length) {
+      if (callback(this[index])) {
+        return index
+      }
+      index++
+    }
+    return -1
   }
 }
 
