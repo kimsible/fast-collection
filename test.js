@@ -19,6 +19,8 @@ test('delete', del, { name: 'toto' })
 test('values', values, 'name', ['marvin', 'toto'])
 test('findIndex-found', findIndex, { name: 'toto' }, 1)
 test('findIndex-notfound', findIndex, { name: 'titi' }, -1)
+test('retrieveOne-found', retrieveOne, { name: 'toto' }, DbCollection.of(data[1]))
+test('retrieveOne-notfound', retrieveOne, { name: 'titi' }, DbCollection.from([]))
 
 function retrieve (t, input, expected) {
   t.deepEqual(DbCollection.from(data).retrieve(...input), expected)
@@ -50,4 +52,9 @@ function values (t, input, expected) {
 function findIndex (t, input, expected) {
   const ref = new DbCollection(...data)
   t.deepEqual(ref.findIndex(item => item.name === input.name), expected)
+}
+
+function retrieveOne (t, input, expected) {
+  const ref = new DbCollection(...data)
+  t.deepEqual(ref.retrieveOne(input), expected)
 }

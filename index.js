@@ -40,6 +40,14 @@ class DbCollection extends Array {
     }, DbCollection.from([]))
   }
 
+  retrieveOne (filters) {
+    const index = this.findIndex(item => isDeepMatch(item, filters))
+    if (index > -1) {
+      return DbCollection.of(this[index])
+    }
+    return DbCollection.from([])
+  }
+
   select (...keys) {
     return this.map(item => keys.reduce((acc, key) => {
       acc[key] = item[key]
