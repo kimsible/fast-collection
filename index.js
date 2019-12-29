@@ -47,19 +47,17 @@ class DbCollection extends Array {
     }, {}))
   }
 
-  update (item) {
-    return (...where) => {
-      const index = this.findIndex(item => hasOneMatch(item, where))
-      if (index > -1) {
-        const updated = { ...this[index], ...item }
-        this.splice(index, 0, updated)
-        return updated
-      }
+  update (filters, update) {
+    const index = this.findIndex(item => isDeepMatch(item, filters))
+    if (index > -1) {
+      const updated = { ...this[index], ...update }
+      this.splice(index, 0, updated)
+      return updated
     }
   }
 
-  delete (...where) {
-    const index = this.findIndex(item => hasOneMatch(item, where))
+  delete (filters) {
+    const index = this.findIndex(item => isDeepMatch(item, filters))
     if (index > -1) {
       return this.splice(index, 1)[0]
     }

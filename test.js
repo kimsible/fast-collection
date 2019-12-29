@@ -14,8 +14,8 @@ test('retrieve-boolean', retrieve, [{ active: true }], DbCollection.of(data[1]))
 test('retrieve-function', retrieve, [{ date: date => date < 20000 }], DbCollection.of(data[0]))
 test('retrieve-multiple', retrieve, [{ name: /^marvi/ }, { name: 'toto' }], DbCollection.from(data))
 test('select', select, ['date', 'body'], DbCollection.from([{ body: 'lorem ipsum', date: 10000 }, { body: 'lorem ipsum', date: 27000 }]))
-test('update', update, { body: 'lorem ipsum' }, { name: 'toto' })
-test('remove', remove, [{ name: 'toto' }])
+test('update', update, { name: 'toto' }, { body: 'lorem ipsum' })
+test('delete', del, { name: 'toto' })
 test('values', values, 'name', ['marvin', 'toto'])
 test('findIndex-found', findIndex, { name: 'toto' }, 1)
 test('findIndex-notfound', findIndex, { name: 'titi' }, -1)
@@ -28,17 +28,17 @@ function select (t, input, expected) {
   t.deepEqual(DbCollection.of(...data).select(...input), expected)
 }
 
-function update (t, item, where) {
+function update (t, filters, item) {
   const ref = new DbCollection(...data)
-  const updated = { ...ref.retrieve(where)[0], ...item }
-  t.deepEqual(ref.update(item)(where), updated)
+  const updated = { ...ref.retrieve(filters)[0], ...item }
+  t.deepEqual(ref.update(filters, item), updated)
 }
 
-function remove (t, where) {
+function del (t, filters) {
   const ref = new DbCollection(...data)
-  const deleted = ref.retrieve(...where)[0]
+  const deleted = ref.retrieve(filters)[0]
   const length = ref.length - 1
-  t.deepEqual(ref.delete(...where), deleted)
+  t.deepEqual(ref.delete(filters), deleted)
   t.deepEqual(ref.length, length)
 }
 
