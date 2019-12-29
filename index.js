@@ -40,8 +40,19 @@ class DbCollection extends Array {
     }, DbCollection.from([]))
   }
 
+  retrieveIndex (filters) {
+    let index = 0
+    while (index < this.length) {
+      if (isDeepMatch(this[index], filters)) {
+        return index
+      }
+      index++
+    }
+    return -1
+  }
+
   retrieveOne (filters) {
-    const index = this.findIndex(item => isDeepMatch(item, filters))
+    const index = this.retrieveIndex(filters)
     if (index > -1) {
       return DbCollection.of(this[index])
     }
@@ -55,22 +66,6 @@ class DbCollection extends Array {
     }, {}))
   }
 
-  update (filters, update) {
-    const index = this.findIndex(item => isDeepMatch(item, filters))
-    if (index > -1) {
-      const updated = { ...this[index], ...update }
-      this.splice(index, 0, updated)
-      return updated
-    }
-  }
-
-  delete (filters) {
-    const index = this.findIndex(item => isDeepMatch(item, filters))
-    if (index > -1) {
-      return this.splice(index, 1)[0]
-    }
-  }
-
   values (key) {
     return this.reduce((acc, item) => {
       if (acc.indexOf(item[key]) < 0) {
@@ -78,17 +73,6 @@ class DbCollection extends Array {
       }
       return acc
     }, [])
-  }
-
-  findIndex (callback) {
-    let index = 0
-    while (index < this.length) {
-      if (callback(this[index])) {
-        return index
-      }
-      index++
-    }
-    return -1
   }
 }
 
