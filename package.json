@@ -1,34 +1,29 @@
 {
-  "name": "db-collection",
+  "name": "fast-collection",
   "version": "1.0.0",
-  "description": "library making javascript object array manipulation easy",
+  "description": "library making javascript object-array manipulation fast and easy",
   "main": "index.js",
   "scripts": {
     "test": "ava -v test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kimsible/db-collection.git"
+    "url": "git+ssh://git@github.com/kimsible/fast-collection.git"
   },
   "keywords": [
-    "array",
-    "Array",
-    "object",
-    "db",
+    "object-array",
     "collection",
-    "database",
-    "map",
-    "retrieve",
-    "update",
-    "delete",
-    "select"
+    "fast",
+    "array",
+    "object",
+    "database"
   ],
   "author": "kimsible",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/kimsible/db-collection/issues"
+    "url": "https://github.com/kimsible/fast-collection/issues"
   },
-  "homepage": "https://github.com/kimsible/db-collection#readme",
+  "homepage": "https://github.com/kimsible/fast-collection#readme",
   "devDependencies": {
     "ava": "^2.4.0",
     "git-hooks": "^1.1.10",

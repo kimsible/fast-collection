@@ -30,14 +30,14 @@ const hasOneMatch = (item, where) => {
   return false
 }
 
-class DbCollection extends Array {
+class Collection extends Array {
   retrieve (...where) {
     return this.reduce((acc, item) => {
       if (hasOneMatch(item, where)) {
         acc.push(item)
       }
       return acc
-    }, DbCollection.from([]))
+    }, Collection.from([]))
   }
 
   retrieveIndex (filters) {
@@ -54,9 +54,9 @@ class DbCollection extends Array {
   retrieveOne (filters) {
     const index = this.retrieveIndex(filters)
     if (index > -1) {
-      return DbCollection.of(this[index])
+      return Collection.of(this[index])
     }
-    return DbCollection.from([])
+    return Collection.from([])
   }
 
   select (...keys) {
@@ -66,7 +66,7 @@ class DbCollection extends Array {
     }, {}))
   }
 
-  values (key) {
+  valuesOf (key) {
     return this.reduce((acc, item) => {
       if (acc.indexOf(item[key]) < 0) {
         acc.push(item[key])
@@ -76,4 +76,4 @@ class DbCollection extends Array {
   }
 }
 
-module.exports = DbCollection
+module.exports = Collection

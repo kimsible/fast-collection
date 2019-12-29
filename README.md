@@ -1,1 +1,1 @@
-# db-collection
+# fast-collection
