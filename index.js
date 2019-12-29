@@ -51,6 +51,15 @@ class DbCollection extends Array {
       return deleted
     }
   }
+
+  values (key) {
+    return this.reduce((acc, item) => {
+      if (acc.indexOf(item[key]) < 0) {
+        acc.push(item[key])
+      }
+      return acc
+    }, [])
+  }
 }
 
 module.exports = DbCollection
