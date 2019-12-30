@@ -8,7 +8,7 @@ This library extends `Array` javascript global object, so every methods and prop
 
 ##### Examples
 ```javascript
-const Collection = require('fast-collection')
+import Collection from 'fast-collection'
 
 const arrayObject = [
   { id: 'VGmMSEdRE08', name: 'Jyn Erso', species: 'Human', jedi: false },
