@@ -1,7 +1,7 @@
 {
   "name": "fast-collection",
   "version": "1.0.0",
-  "description": "library making javascript object-array manipulation fast and easy",
+  "description": "Small library making javascript object-array manipulation fast and easy",
   "main": "index.js",
   "scripts": {
     "test": "ava -v test.js"
