@@ -1,32 +1,30 @@
 {
+  "main": "index",
   "name": "fast-collection",
   "version": "1.0.0",
-  "description": "Small library making javascript object-array manipulation fast and easy",
-  "main": "index.js",
-  "scripts": {
-    "test": "ava -v test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kimsible/fast-collection.git"
-  },
-  "keywords": [
-    "object-array",
-    "collection",
-    "fast",
-    "array",
-    "object",
-    "database"
-  ],
   "author": "kimsible",
   "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/kimsible/fast-collection/issues"
-  },
-  "homepage": "https://github.com/kimsible/fast-collection#readme",
+  "repository": "github:kimsible/fast-collection",
   "devDependencies": {
     "ava": "^2.4.0",
-    "git-hooks": "^1.1.10",
+    "husky": "^3.1.0",
     "standard": "^14.3.1"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ],
+    "extensions": [
+      "mjs"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "ava",
+      "pre-push": "standard"
+    }
+  },
+  "engines": {
+    "node": ">=13.5"
   }
 }

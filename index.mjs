@@ -30,7 +30,7 @@ const hasOneMatch = (item, where) => {
   return false
 }
 
-class Collection extends Array {
+export default class Collection extends Array {
   retrieve (...where) {
     return this.reduce((acc, item) => {
       if (hasOneMatch(item, where)) {
@@ -75,5 +75,3 @@ class Collection extends Array {
     }, [])
   }
 }
-
-module.exports = Collection
