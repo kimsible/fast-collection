@@ -20,8 +20,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "ava",
-      "pre-push": "standard"
+      "pre-commit": "standard",
+      "pre-push": "ava"
     }
   },
   "engines": {
