@@ -1,5 +1,5 @@
 {
-  "main": "index",
+  "main": "index.mjs",
   "name": "fast-collection",
   "version": "1.0.0",
   "author": "kimsible",
