@@ -1,7 +1,7 @@
 {
   "main": "index.mjs",
   "name": "fast-collection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "kimsible",
   "license": "AGPL-3.0",
   "repository": "github:kimsible/fast-collection",
