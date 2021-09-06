@@ -1,7 +1,7 @@
 'use strict'
 
 import test from 'ava'
-import Collection from '.'
+import Collection from './index.js'
 
 const data = [
   { name: 'marvin', body: 'lorem ipsum', date: 10000 },

@@ -1,22 +1,15 @@
 {
-  "main": "index.mjs",
+  "main": "index.js",
   "name": "fast-collection",
   "version": "1.0.1",
   "author": "kimsible",
   "license": "AGPL-3.0",
   "repository": "github:kimsible/fast-collection",
+  "type": "module",
   "devDependencies": {
-    "ava": "^2.4.0",
-    "husky": "^3.1.0",
-    "standard": "^14.3.1"
-  },
-  "ava": {
-    "require": [
-      "esm"
-    ],
-    "extensions": [
-      "mjs"
-    ]
+    "ava": "4.0.0-alpha.2",
+    "husky": "^7.0.2",
+    "standard": "^16.0.3"
   },
   "husky": {
     "hooks": {
@@ -25,6 +18,6 @@
     }
   },
   "engines": {
-    "node": ">=13.5"
+    "node": ">=16.8"
   }
 }
