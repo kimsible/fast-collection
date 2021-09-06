@@ -69,10 +69,10 @@ collection.retrieve({ jedi: true }).select('name').slice(0, 2)
 
 
 
-_**Insert** with `ES spread operator` or `splice`_
+_**Insert to first** with `ES spread operator` or `splice`_
 
 ```javascript
-// fastest
+// faster
 [
   {
     id: 'oE6iC-2AW9T_2t5yQz2eS',
@@ -91,6 +91,20 @@ collection.splice(0, 0, {
   jedi: true
 })
 ```
+
+_**Insert to last** with `push`_
+
+```javascript
+
+// fastest
+collection.push({
+  id: 'oE6iC-2AW9T_2t5yQz2eS',
+  name: 'Rey Skywalker',
+  species: 'Human',
+  jedi: true
+})
+```
+
 
 _**Update** and **Delete** with retrieveIndex and splice_
 
